@@ -1,7 +1,16 @@
-#Create a new repository on the command line
-git init
-git add .
-git commit "new commit"
-git branch -M main
-git remote add origin https://github.com/ldvelasco/practica-web-restaurante.git
-git push -u origin main
+# Realizar cambios 
+1. Dale clic al botón Fork (arriba a la derecha) → ahora tendrás tu propia copia
+
+2. Clona TU fork (no el mío):
+   git clone https://github.com/TU-USUARIO/practica-web-restaurante.git
+   cd practica-web-restaurante
+
+3. Haz tus cambios
+
+4. git add .
+   git commit -m "Breve descripcion"
+   git push origin main
+
+5. Entra a tu fork en GitHub y dale al botón verde Contribute → Open pull request
+
+6. Ponle título + descripción corta y dale “Create pull request”

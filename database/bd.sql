@@ -1,5 +1,5 @@
 -- Tabla Restaurantes
-CREATE TABLE Restaurantes (
+CREATE TABLE IF NOT EXISTS Restaurantes (
     CodRes VARCHAR(10) PRIMARY KEY,
     Correo VARCHAR(100) NOT NULL,
     Clave VARCHAR(100) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE Restaurantes (
 );
 
 -- Tabla Pedidos
-CREATE TABLE Pedidos (
+CREATE TABLE IF NOT EXISTS Pedidos (
     CodPed VARCHAR(10) PRIMARY KEY,
     Fecha DATE NOT NULL,
     Enviado BOOLEAN DEFAULT FALSE,
@@ -19,8 +19,15 @@ CREATE TABLE Pedidos (
     FOREIGN KEY (Restaurante) REFERENCES Restaurantes(CodRes)
 );
 
+-- Tabla Categorias
+CREATE TABLE IF NOT EXISTS Categorias (
+    CodCat VARCHAR(10) PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL,
+    Descripcion TEXT
+);
+
 -- Tabla Productos
-CREATE TABLE Productos (
+CREATE TABLE IF NOT EXISTS Productos (
     CodProd VARCHAR(10) PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
     Descripcion TEXT,
@@ -31,18 +38,11 @@ CREATE TABLE Productos (
 );
 
 -- Tabla PedidosProductos
-CREATE TABLE PedidosProductos (
+CREATE TABLE IF NOT EXISTS PedidosProductos (
     CodPedProd VARCHAR(10) PRIMARY KEY,
     Pedido VARCHAR(10),
     Producto VARCHAR(10),
     Unidades INT NOT NULL,
     FOREIGN KEY (Pedido) REFERENCES Pedidos(CodPed),
     FOREIGN KEY (Producto) REFERENCES Productos(CodProd)
-);
-
--- Tabla Categorias
-CREATE TABLE Categorias (
-    CodCat VARCHAR(10) PRIMARY KEY,
-    Nombre VARCHAR(50) NOT NULL,
-    Descripcion TEXT
 );
