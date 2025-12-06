@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         <td><?= $prod['Peso'] ?></td>
                         <td><?= $prod['unidades'] ?></td>
                         <td>
-                            <form method="post" action="carrito.php">
+                            <form method="post" action="eliminar.php">
                                 <input type="hidden" name="cod" value="<?= $prod['clave'] ?>">
                                 <input type="number" name="unidades" min="1" max="<?= $prod['unidades'] ?>" value="1" required>
                                 <button type="submit">Eliminar</button>
