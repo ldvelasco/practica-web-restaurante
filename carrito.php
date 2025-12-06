@@ -46,21 +46,6 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
         $productosCarrito[] = $prod;
     }
 }
-
-// ---- eliminar ----
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-
-    $clave = $_POST['cod'];
-    $uds = $_POST['unidades'];
-
-    if(isset($_SESSION['carrito'][$clave])) {
-        $_SESSION['carrito'][$clave] -= $uds;
-        if($_SESSION['carrito'][$clave] <= 0) unset($_SESSION['carrito'][$clave]);
-    }
-
-    header("Location: carrito.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
