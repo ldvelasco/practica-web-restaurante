@@ -46,21 +46,6 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
         $productosCarrito[] = $prod;
     }
 }
-
-// ---- eliminar ----
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-
-    $clave = $_POST['cod'];
-    $uds = $_POST['unidades'];
-
-    if(isset($_SESSION['carrito'][$clave])) {
-        $_SESSION['carrito'][$clave] -= $uds;
-        if($_SESSION['carrito'][$clave] <= 0) unset($_SESSION['carrito'][$clave]);
-    }
-
-    header("Location: carrito.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     <h2>Carrito de la compra</h2>
 
     <?php if (empty($productosCarrito)): ?>
-    <p>El carrito está vascío.</p>
+    <p>El carrito está vacío.</p>
     <?php else: ?>
         <table border="1">
             <thead>
@@ -105,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         <td><?= $prod['Peso'] ?></td>
                         <td><?= $prod['unidades'] ?></td>
                         <td>
-                            <form method="post" action="carrito.php">
+                            <form method="post" action="eliminar.php">
                                 <input type="hidden" name="cod" value="<?= $prod['clave'] ?>">
                                 <input type="number" name="unidades" min="1" max="<?= $prod['unidades'] ?>" value="1" required>
                                 <button type="submit">Eliminar</button>
