@@ -1,108 +1,108 @@
 <?php
 session_start();
-include "cabecera.php";  
+include "cabecera.php";
 
-// Solo para test
-// unset($_SESSION['carrito']);
+// SI LLEGAN DATOS DESDE productos.php → AÑADIR AL CARRITO
+if (isset($_GET["codigo"]) && isset($_GET["categoria"]) && isset($_GET["unidades"])) {
 
-// ---- Recuperar carrito ----
+    $codigo = $_GET["codigo"];
+    $categoria = $_GET["categoria"];
+    $unidades = intval($_GET["unidades"]);
+
+    // Crear clave única: ej. "1-3"
+    $clave = $categoria . "-" . $codigo;
+
+    // Si no existe en la sesión, crear con 0
+    if (!isset($_SESSION["carrito"][$clave])) {
+        $_SESSION["carrito"][$clave] = 0;
+    }
+
+    // Sumar unidades
+    $_SESSION["carrito"][$clave] += $unidades;
+}
+
+
+// ---- MOSTRAR CARRITO ----
+
 $productosCarrito = [];
 
-if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+if (isset($_SESSION["carrito"])) {
 
-    foreach ($_SESSION['carrito'] as $clave => $unidades) {
+    foreach ($_SESSION["carrito"] as $clave => $unidades) {
 
-        if (strpos($clave, '-') === false) continue;
-        list($categoria, $codigo) = explode('-', $clave);
+        list($categoria, $codigo) = explode("-", $clave);
 
-
-        // Misma lista de productos que productos.php
+        // MISMAS LISTAS QUE USAS EN productos.php
         if($categoria == 1){
             $productos = [
-                1 => ["CodProd"=>1,"Nombre"=>"Cerveza Alhambra","Descripcion"=>"24 botellas 33cl","Peso"=>"10"],
-                2 => ["CodProd"=>2,"Nombre"=>"Cerveza Mahou","Descripcion"=>"24 botellas 33cl","Peso"=>"10"],
-                3 => ["CodProd"=>3,"Nombre"=>"Vino Tinto","Descripcion"=>"6 botellas","Peso"=>"5.5"],
+                1 => ["Nombre"=>"Cerveza Alhambra","Descripcion"=>"24 Botellas 33cl","Peso"=>"10"],
+                2 => ["Nombre"=>"Cerveza Mahou","Descripcion"=>"24 Botellas 33cl","Peso"=>"10"],
+                3 => ["Nombre"=>"Vino Tinto","Descripcion"=>"6 botellas 0.75","Peso"=>"5.5"],
             ];
         }
         elseif($categoria == 2){
             $productos = [
-                1 => ["CodProd"=>1,"Nombre"=>"Agua Mineral","Descripcion"=>"24 botellas","Peso"=>"6"],
-                2 => ["CodProd"=>2,"Nombre"=>"Coca-Cola","Descripcion"=>"24 botellas","Peso"=>"12"],
-                3 => ["CodProd"=>3,"Nombre"=>"Zumo Naranja","Descripcion"=>"6 bricks","Peso"=>"5"],
+                1 => ["Nombre"=>"Agua Mineral","Descripcion"=>"24 Botellas","Peso"=>"6"],
+                2 => ["Nombre"=>"Coca-Cola","Descripcion"=>"24 Botellas","Peso"=>"12"],
+                3 => ["Nombre"=>"Zumo Naranja","Descripcion"=>"6 bricks","Peso"=>"5"],
             ];
         }
         elseif($categoria == 3){
             $productos = [
-                1 => ["CodProd"=>1,"Nombre"=>"Paella","Descripcion"=>"Mixta","Peso"=>"1.2"],
-                2 => ["CodProd"=>2,"Nombre"=>"Hamburguesa","Descripcion"=>"Con queso","Peso"=>"0.25"],
-                3 => ["CodProd"=>3,"Nombre"=>"Pizza","Descripcion"=>"Margarita","Peso"=>"0.8"],
+                1 => ["Nombre"=>"Paella","Descripcion"=>"Paella mixta","Peso"=>"1.2"],
+                2 => ["Nombre"=>"Hamburguesa","Descripcion"=>"Con queso","Peso"=>"0.25"],
+                3 => ["Nombre"=>"Pizza","Descripcion"=>"Margarita","Peso"=>"0.8"],
             ];
         }
 
+        // Recuperar producto
         $prod = $productos[$codigo];
-        $prod['unidades'] = $unidades;
-        $prod['clave'] = $clave;     
+        $prod["unidades"] = $unidades;
+        $prod["clave"] = $clave;
 
         $productosCarrito[] = $prod;
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            text-align: center;
-        }
-        table {
-            margin: 0 auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px 15px;
-        }
-    </style>
-</head>
-<body>
-    <h2>Carrito de la compra</h2>
 
-    <?php if (empty($productosCarrito)): ?>
-    <p>El carrito está vacío.</p>
-    <?php else: ?>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Peso (kg)</th>
-                    <th>Unidades</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($productosCarrito as $prod): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($prod['Nombre']) ?></td>
-                        <td><?= htmlspecialchars($prod['Descripcion']) ?></td>
-                        <td><?= $prod['Peso'] ?></td>
-                        <td><?= $prod['unidades'] ?></td>
-                        <td>
-                            <form method="post" action="eliminar.php">
-                                <input type="hidden" name="cod" value="<?= $prod['clave'] ?>">
-                                <input type="number" name="unidades" min="1" max="<?= $prod['unidades'] ?>" value="1" required>
-                                <button type="submit">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-    </table>
-    <p><a href="procesar_pedido.php">Realizar pedido</a></p>
-    <?php endif; ?>
+<h2>Carrito de la compra</h2>
 
-    <p><a href="categorias.php">Seguir comprando</a></p>
-</body>
-</html>
+<?php if (empty($productosCarrito)): ?>
+<p>El carrito está vacío.</p>
+
+<?php else: ?>
+
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Peso</th>
+        <th>Unidades</th>
+        <th>Eliminar</th>
+    </tr>
+
+    <?php foreach ($productosCarrito as $prod): ?>
+    <tr>
+        <td><?= $prod["Nombre"] ?></td>
+        <td><?= $prod["Descripcion"] ?></td>
+        <td><?= $prod["Peso"] ?></td>
+        <td><?= $prod["unidades"] ?></td>
+
+        <td>
+            <form action="eliminar.php" method="POST">
+                <input type="hidden" name="cod" value="<?= $prod['clave'] ?>">
+                <input type="number" name="unidades" min="1" max="<?= $prod['unidades'] ?>" value="1">
+                <input type="submit" value="Eliminar">
+            </form>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<?php endif; ?>
+
+<p><a href="categorias.php">Seguir comprando</a></p>
+<form action="procesar_pedido.php" method="post">
+    <button type="submit">Realizar Pedido</button>
+</form>

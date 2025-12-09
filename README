@@ -1,3 +1,9 @@
+# Configuración variables de entorno
+
+1. Copia el archivo `.env.example` y renómbralo a `.env`
+2. Rellena tus credenciales de Gmail (usa una App Password)
+3. Ejecuta el proyecto
+
 # Realizar cambios 
 1. Dale clic al botón Fork (arriba a la derecha) → ahora tendrás tu propia copia
 
