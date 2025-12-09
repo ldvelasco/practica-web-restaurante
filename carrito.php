@@ -97,9 +97,11 @@ if (isset($_SESSION["carrito"])) {
         </td>
     </tr>
     <?php endforeach; ?>
-
 </table>
 
 <?php endif; ?>
 
 <p><a href="categorias.php">Seguir comprando</a></p>
+<form action="procesar_pedido.php" method="post">
+    <button type="submit">Realizar Pedido</button>
+</form>
