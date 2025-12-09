@@ -9,6 +9,13 @@ $recordarme = isset($_POST['recordarme']);
 if ($usuario === $usuario_valido && $password === $password_valido) {
     if ($recordarme) {
         setcookie("usuario", $usuario, time() + (86400 * 7), "/"); 
+
+        // Guarda sessión
+        session_start();
+        $_SESSION["usuario"] = $usuario;
+        // $_SESSION["codRes"] = 1;
+        header("Location: categorias.php");
+        exit();
     } else {
         setcookie("usuario", $usuario, 0, "/"); 
     }

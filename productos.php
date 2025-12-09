@@ -1,4 +1,5 @@
 <?php include "cabecera.php";?>
+<?php session_start(); ?>
 
 <?php
 $categoria = $_GET['categoria'] ?? '';
@@ -75,6 +76,7 @@ if($categoria == 1){
         <th>Descripción</th>
         <th>Peso</th>
         <th>Stock</th>
+        <th>Comprar</th>
     </tr>
     <?php foreach($productos as $producto): ?>
     <tr>
@@ -84,12 +86,15 @@ if($categoria == 1){
         <td><?php echo $producto['Stock']; ?></td>
 
         <td>
-            <form action="carrito.php" method="GET">
+            <form action="anadir.php" method="POST">   <!-- CAMBIE A AÑADIR.PHP Y METOD POST-->
                 <input type="number" name="unidades" min="1" max="<?= $producto['Stock']?>" value="1" required>
                 <input type="hidden" name="codigo" value="<?= $producto['Codigo'] ?>">
+                <input type="hidden" name="categoria" value="<?= $categoria ?>"> <!-- add -->
                 <input type="submit" value="Comprar">
             </form>
         </td>
     </tr>
     <?php endforeach; ?>
 </table>
+
+<a href="carrito.php">Ir al carrito</a>
