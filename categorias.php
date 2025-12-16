@@ -6,6 +6,7 @@ include "cabecera.php";
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
     <title>Categorías</title>
     <style>
 body {
