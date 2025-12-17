@@ -11,7 +11,7 @@ if (isset($_COOKIE['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
-    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
     <style>
         body {
             margin: 0;

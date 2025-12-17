@@ -1,24 +1,32 @@
-# WEB - RESTAURANTE
+# WEB - RESTAURANTE - SISTEMA DE PEDIDOS
 
-# Configuración variables de entorno
+Sistema web de restaurante con carrito de compras, categorías, productos, gestión de pedidos y envío de correo de confirmación. Desarrollado en PHP puro con MySQL.
 
-1. Copia el archivo `.env.example` y renómbralo a `.env`
-2. Rellena tus credenciales de Gmail (usa una App Password)
-3. Ejecuta el proyecto
+Proyecto realizado como trabajo de clase, ejecutado en entorno local con XAMPP.
 
-# Realizar cambios 
-1. Dale clic al botón Fork (arriba a la derecha) → ahora tendrás tu propia copia
+## 📦 Tech Stack
 
-2. Clona TU fork (no el mío):
-   git clone https://github.com/TU-USUARIO/practica-web-restaurante.git
-   cd practica-web-restaurante
+- **Lenguaje: PHP (versión 8.x recomendada)**
+- **Base de datos: MySQL**
+- **Servidor local: XAMPP (Apache + MySQL)**
+- **Envío de correos: PHPMailer**
+- **Gestión de sesiones: PHP nativo**
+- **Frontend: HTML + CSS básico + PHP (sin framework)**
 
-3. Haz tus cambios
+# 🛠️ Setup & Installation
+### Requisitos
+   XAMPP instalado y funcionando (Apache + MySQL).
+   Descarga: https://www.apachefriends.org/es/index.html
 
-4. git add .
-   git commit -m "Breve descripcion"
-   git push origin main
+### Instalación
 
-5. Entra a tu fork en GitHub y dale al botón verde Contribute → Open pull request
+1. Clona el repositorio en tu máquina local.
+2. Abre el archivo `.env.example` y renombra a `.env`
+3. Rellena tus credenciales de Gmail (usa una App Password) en el archivo `.env`
+4. Ejecuta el proyecto
 
-6. Ponle título + descripción corta y dale “Create pull request”
+# 📝 Notas
+
+El carrito se guarda en $_SESSION, por lo que se pierde al cerrar el navegador si no hay login persistente.
+El envío de correo requiere una cuenta real con SMTP configurado (recomendado usar una app password de Gmail).
+Proyecto educativo, sin encriptación avanzada ni medidas de seguridad para producción.
