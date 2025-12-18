@@ -4,7 +4,7 @@ Sistema web de restaurante con carrito de compras, categorías, productos, gesti
 
 Proyecto realizado como trabajo de clase, ejecutado en entorno local con XAMPP.
 
-## 📦 Tech Stack
+## Tech Stack
 
 - **Lenguaje: PHP (versión 8.x recomendada)**
 - **Base de datos: MySQL**
@@ -13,7 +13,7 @@ Proyecto realizado como trabajo de clase, ejecutado en entorno local con XAMPP.
 - **Gestión de sesiones: PHP nativo**
 - **Frontend: HTML + CSS básico + PHP (sin framework)**
 
-# 🛠️ Setup & Installation
+# Setup & Installation
 ### Requisitos
    XAMPP instalado y funcionando (Apache + MySQL).
    Descarga: https://www.apachefriends.org/es/index.html

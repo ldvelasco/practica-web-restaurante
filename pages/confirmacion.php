@@ -1,4 +1,4 @@
-<?php session_start(); include "cabecera.php"; ?>
+<?php session_start(); include "../includes/cabecera.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +76,7 @@
         <div class="table-container">
             <p>Tu pedido número <strong><?= $_GET['pedido'] ?? 'desconocido' ?></strong> ha sido enviado.</p>
             <p>Recibirás un correo de confirmación en breve.</p>
-            <a href="categorias.php" class="link" >Volver al catálogo</a>
+            <a href="../pages/categorias.php" class="link" >Volver al catálogo</a>
         </div>
     </div>
 </body>

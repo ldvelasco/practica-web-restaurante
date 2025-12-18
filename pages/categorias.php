@@ -1,12 +1,12 @@
 <?php
-include "cabecera.php";
+include "../includes/cabecera.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
     <title>Categorías</title>
     <style>
 body {

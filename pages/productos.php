@@ -1,4 +1,4 @@
-<?php include "cabecera.php"; ?>
+<?php include "../includes/cabecera.php"; ?>
 
 <?php
 

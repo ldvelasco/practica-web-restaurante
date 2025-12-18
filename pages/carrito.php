@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "cabecera.php";
+include "../includes/cabecera.php";
 
 if (isset($_GET["codigo"]) && isset($_GET["categoria"]) && isset($_GET["unidades"])) {
 
@@ -68,7 +68,7 @@ if (isset($_SESSION["carrito"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
     <title>Carrito</title>
     <style>
         body {
@@ -240,7 +240,7 @@ if (isset($_SESSION["carrito"])) {
                     <td><?= $prod["unidades"] ?></td>
 
                     <td>
-                        <form action="eliminar.php" method="POST">
+                        <form action="../actions/eliminar.php" method="POST">
                             <input type="hidden" name="cod" value="<?= $prod['clave'] ?>">
                             <input type="number" name="unidades" min="1" max="<?= $prod['unidades'] ?>" value="1">
                             <input type="submit" class="rm-button" value="Eliminar">
@@ -252,8 +252,8 @@ if (isset($_SESSION["carrito"])) {
             <?php endif; ?>
         </div>
         
-        <p><a href="categorias.php" class="link">Seguir comprando</a></p>
-        <form action="procesar_pedido.php" method="post">
+        <p><a href="../pages/categorias.php" class="link">Seguir comprando</a></p>
+        <form action="../actions/procesar_pedido.php" method="post">
             <button type="submit" class="link">Realizar Pedido</button>
         </form>
     </div>

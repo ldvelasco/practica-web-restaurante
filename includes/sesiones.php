@@ -16,9 +16,9 @@ if ($usuario === $usuario_valido && $password === $password_valido) {
     } else {
         setcookie("usuario", $usuario, 0, "/"); 
     }
-    header("Location: categorias.php");
+    header("Location: ../pages/categorias.php");
     exit();
 } else {
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit();
 }

@@ -2,19 +2,19 @@
 /*
 Insertar los pedidos en la bd, envia correos de confirmacion y muestra mensajes de erroro éxito 
 */
-require_once 'env.php';
+require_once '../includes/env.php';
 session_start();
 
-require_once 'database/bd.php';
-require_once 'correo.php';
+require_once '../database/bd.php';
+require_once '../includes/correo.php';
 
 if (!isset($_SESSION['usuario']) || !isset($_SESSION['codRes'])) {
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit;
 }
 
 if (empty($_SESSION['carrito'])) {
-    header("Location: carrito.php?error=vacio");
+    header("Location: ../pages/carrito.php?error=vacio");
     exit;
 }
 
@@ -75,12 +75,12 @@ try {
 
     // Vaciar carrito y redirigir
     unset($_SESSION['carrito']);
-    header("Location: confirmacion.php?exito=true&pedido={$codPed}");
+    header("Location: ../pages/confirmacion.php?exito=true&pedido={$codPed}");
     exit;
 
 } catch (Exception $e) {
     error_log("Error procesando pedido: " . $e->getMessage());
-    header("Location: carrito.php?error=bd");
+    header("Location: ../pages/carrito.php?error=bd");
     exit;
 }
 ?>

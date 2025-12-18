@@ -1,6 +1,6 @@
 <?php
 if (!isset($_COOKIE['usuario'])) {
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit();
 }
 $usuario = $_COOKIE['usuario'];
@@ -18,9 +18,9 @@ $usuario = $_COOKIE['usuario'];
     <div>Usuario: <strong><?php echo htmlspecialchars($usuario); ?></strong></div>
 
     <nav>
-        <a href="categorias.php" style="margin-right:15px;">Home</a>
-        <a href="carrito.php" style="margin-right:15px;">Ver carrito</a>
-        <a href="logout.php">Cerrar sesión</a>
+        <a href="../pages/categorias.php" style="margin-right:15px;">Home</a>
+        <a href="../pages/carrito.php" style="margin-right:15px;">Ver carrito</a>
+        <a href="../actions/logout.php">Cerrar sesión</a>
     </nav>
 
 </div>

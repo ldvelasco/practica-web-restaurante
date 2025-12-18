@@ -1,6 +1,6 @@
 <?php
 if (isset($_COOKIE['usuario'])) {
-    header("Location: categorias.php");
+    header("Location: ../pages/categorias.php");
     exit();
 }
 ?>
@@ -11,7 +11,7 @@ if (isset($_COOKIE['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
-    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -127,7 +127,7 @@ if (isset($_COOKIE['usuario'])) {
         }
         ?>
 
-        <form action="sesiones.php" method="POST">
+        <form action="../includes/sesiones.php" method="POST">
             <div class="form-group">
                 <label>Usuario:</label>
                 <input type="text" name="usuario" required><br><br>

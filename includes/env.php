@@ -7,5 +7,5 @@ function cargarEnv($ruta) {
         $_ENV[$clave] = $valor;
     }
 }
-cargarEnv(__DIR__ . '/.env');
+cargarEnv(__DIR__ . '/../.env');
 ?>

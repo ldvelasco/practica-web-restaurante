@@ -1,14 +1,14 @@
 <?php
-require_once 'env.php';
+require_once '../includes/env.php';
 
 //Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require_once 'PHPMailer-master/PHPMailer-master/src/Exception.php';
-require_once 'PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
-require_once 'PHPMailer-master/PHPMailer-master/src/SMTP.php';
+require_once '../PHPMailer-master/PHPMailer-master/src/Exception.php';
+require_once '../PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
+require_once '../PHPMailer-master/PHPMailer-master/src/SMTP.php';
 
 function enviarCorreoPedido($destinatarioRestaurante, $destinatarioDept, $detallesHTML) {
     //Create an instance; passing `true` enables exceptions
